@@ -1,6 +1,6 @@
 import deepmerge from "deepmerge";
 
-export const DEFAULT_BASE_URL = "http://localhost:3000/";
+export const DEFAULT_BASE_URL = "http://localhost:3000";
 
 async function client(
   url: string,
