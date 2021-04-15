@@ -1,6 +1,7 @@
 {
   "name": "phone-store-front",
-  "version": "0.1.0",
+  "author": "Alber Erre",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
