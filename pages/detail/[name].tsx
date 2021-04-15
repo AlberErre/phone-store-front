@@ -15,8 +15,16 @@ export default function Detail() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h2 className={styles.title}>{`${name} details:`}</h2>
+      <main
+        className={styles.main}
+        style={{
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
+          width: "90vw",
+        }}
+      >
+        <h1 className={styles.title}>{`${name}`}</h1>
+        <h2>{`Details:`}</h2>
 
         {/* //NOTE: Detail Component here */}
       </main>
