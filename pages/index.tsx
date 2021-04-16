@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useEffect } from "react";
+import { PhoneListContainer } from "../components/PhoneListContainer";
 import { Phone } from "../domain/Phone";
 import { useFetchPhones } from "../hooks/useFetchPhones";
 import { usePhoneContext } from "../hooks/usePhoneContext";
@@ -22,17 +23,24 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <main className={styles.main} style={{ margin: 16 }}>
         <h1 className={styles.title}>Phone Store 📱</h1>
         <p className={styles.description}>
           Check out our awesome phones, press to see details.
         </p>
 
-        {!fetchedPhones && !(phones.length > 0) && "loading..."}
+        <div
+          style={{
+            flexGrow: 1,
+            flexWrap: "wrap",
+            width: "80vw",
+            overflow: "scroll",
+          }}
+        >
+          {!fetchedPhones && !(phones.length > 0) && "loading..."}
 
-        {phones.length > 0 && <div>phones!</div>}
-
-        {/* //NOTE: PhoneList here */}
+          {phones.length > 0 && <PhoneListContainer phones={phones} />}
+        </div>
       </main>
 
       <footer className={styles.footer}>
