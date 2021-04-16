@@ -10,7 +10,7 @@ export type PhoneAction =
 export const phoneReducer = (state: Phone[], action: PhoneAction): Phone[] => {
   switch (action.type) {
     case "ADD_PHONES":
-      return addPhonesAction(state, action.phones);
+      return addPhonesAction(action.phones);
     case "EMPTY_PHONES":
       return emptyPhonesAction();
     default:

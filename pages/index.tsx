@@ -1,38 +1,19 @@
 import Head from "next/head";
 import { useEffect } from "react";
 import { Phone } from "../domain/Phone";
+import { useFetchPhones } from "../hooks/useFetchPhones";
 import { usePhoneContext } from "../hooks/usePhoneContext";
 import styles from "../styles/Main.module.css";
 
-const mockPhones = [
-  {
-    brand: "Samsung",
-    name: "Samsung Galaxy A12 64GB Azul",
-    description:
-      "Se abre el telón ¡y aparecen las 4 cámaras del Samsung Galaxy A12! Pero no solo eso, también entran a escena la pantalla LCD IPS de 6,5 pulgadas, la batería de 5.000 mAh bien cargada para darlo todo en el escenario y el pequeño jack de audio de 3.5mm. Os recordamos que ha pasado por vestuario y viene con el sistema operativo Android 10 bajo la capa de personalización One UI.",
-    image: {
-      url:
-        "https://allzone.es/636935-large_default/samsung-s21-g996-5g-dual-sim-8gb-ram-256gb-plata.jpg",
-      type: "image/png",
-    },
-    color: "#0431B4",
-    price: 786.76,
-    colorDescription: "Azul",
-  },
-];
-
 export default function Home() {
   const [phones, dispatch] = usePhoneContext();
+  const { phones: fetchedPhones } = useFetchPhones();
 
   useEffect(() => {
-    //TODO: load phones here...
+    if (!fetchedPhones) return;
 
-    dispatch({ type: "ADD_PHONES", phones: mockPhones as Phone[] });
-  }, []);
-
-  useEffect(() => {
-    console.log("phones", phones);
-  }, [phones]);
+    dispatch({ type: "ADD_PHONES", phones: fetchedPhones });
+  }, [fetchedPhones]);
 
   return (
     <div className={styles.container}>
@@ -46,6 +27,10 @@ export default function Home() {
         <p className={styles.description}>
           Check out our awesome phones, press to see details.
         </p>
+
+        {!fetchedPhones && !(phones.length > 0) && "loading..."}
+
+        {phones.length > 0 && <div>phones!</div>}
 
         {/* //NOTE: PhoneList here */}
       </main>
