@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { CSSProperties, useEffect } from "react";
 import { PhoneDetailComponent } from "../../components/PhoneDetailComponent";
 import { usePhoneContext } from "../../hooks/usePhoneContext";
 import styles from "../../styles/Main.module.css";
@@ -28,15 +28,7 @@ export default function Detail() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main
-        className={styles.main}
-        style={{
-          justifyContent: "flex-start",
-          alignItems: "flex-start",
-          width: "90vw",
-          margin: 16,
-        }}
-      >
+      <main className={styles.main} style={customStyles.main}>
         <Link href="/">
           <a style={{ textDecoration: "underline", marginBottom: "1rem" }}>
             Back
@@ -48,3 +40,12 @@ export default function Detail() {
     </div>
   );
 }
+
+const customStyles: Record<string, CSSProperties> = {
+  main: {
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    width: "90vw",
+    margin: 16,
+  },
+};
