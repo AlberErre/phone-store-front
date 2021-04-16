@@ -1,17 +1,30 @@
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { PhoneDetailComponent } from "../../components/PhoneDetailComponent";
+import { usePhoneContext } from "../../hooks/usePhoneContext";
 import styles from "../../styles/Main.module.css";
 
 export default function Detail() {
+  const [phones] = usePhoneContext();
   const router = useRouter();
-  const { name } = router.query;
 
-  if (!name) return null;
+  const { name } = router.query;
+  const phone = phones.find((phone) => phone.name === name);
+
+  const goBack = () => router.push(`/`);
+
+  useEffect(() => {
+    if (!phone) goBack();
+  }, [phone]);
+
+  if (!phone) return null;
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>{`${name} details`}</title>
+        <title>{`${phone.name} details`}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -21,12 +34,16 @@ export default function Detail() {
           justifyContent: "flex-start",
           alignItems: "flex-start",
           width: "90vw",
+          margin: 16,
         }}
       >
-        <h1 className={styles.title}>{`${name}`}</h1>
-        <h2>{`Details:`}</h2>
+        <Link href="/">
+          <a style={{ textDecoration: "underline", marginBottom: "1rem" }}>
+            Back
+          </a>
+        </Link>
 
-        {/* //NOTE: Detail Component here */}
+        <PhoneDetailComponent phone={phone} />
       </main>
     </div>
   );
