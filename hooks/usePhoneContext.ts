@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { PhoneContext } from "../redux/providers/phoneProvider";
+import { PhoneContext } from "../context/PhoneContext";
 
 export const usePhoneContext = () => {
   const context = useContext(PhoneContext);
