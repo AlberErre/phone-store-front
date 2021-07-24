@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { CSSProperties, useEffect } from "react";
 import { PhoneDetailComponent } from "../../components/PhoneDetailComponent";
-import { usePhoneContext } from "../../hooks/usePhoneContext";
+import { usePhoneContext } from "../../context/PhoneContext";
 import styles from "../../styles/Main.module.css";
 
 export default function Detail() {

@@ -2,7 +2,7 @@ import Head from "next/head";
 import { CSSProperties, useEffect } from "react";
 import MoonLoader from "react-spinners/MoonLoader";
 import { useFetchPhones } from "../hooks/useFetchPhones";
-import { usePhoneContext } from "../hooks/usePhoneContext";
+import { usePhoneContext } from "../context/PhoneContext";
 import { PhoneListContainer } from "../components/PhoneListContainer";
 import styles from "../styles/Main.module.css";
 

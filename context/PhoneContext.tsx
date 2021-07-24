@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { Phone } from "../domain/Phone";
 
 export const PhoneContext =
@@ -12,4 +12,16 @@ export const PhoneProvider = ({ children }) => {
       {children}
     </PhoneContext.Provider>
   );
+};
+
+export const usePhoneContext = () => {
+  const context = useContext(PhoneContext);
+
+  if (!context) {
+    throw new Error(
+      "Phone context not found, it must be used inside PhoneProvider"
+    );
+  }
+
+  return context;
 };
