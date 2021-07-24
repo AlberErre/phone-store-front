@@ -1,8 +1,8 @@
 import { Phone } from "../domain/Phone";
-import { serviceProvider } from "./serviceProvider";
+import { apiClient } from "./api";
 
-const service = serviceProvider();
+const api = apiClient();
 
 export const getPhones = (): Promise<Phone[]> => {
-  return service.get("/phones");
+  return api.get("/phones");
 };
