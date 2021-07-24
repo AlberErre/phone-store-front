@@ -3,21 +3,18 @@ import { CSSProperties, useEffect } from "react";
 import MoonLoader from "react-spinners/MoonLoader";
 import { useFetchPhones } from "../hooks/useFetchPhones";
 import { usePhoneContext } from "../hooks/usePhoneContext";
-import { Phone } from "../domain/Phone";
 import { PhoneListContainer } from "../components/PhoneListContainer";
 import styles from "../styles/Main.module.css";
 
 export default function Home() {
-  const [phones, dispatch] = usePhoneContext();
-  const { phones: fetchedPhones } = useFetchPhones();
+  const [phones, setPhones] = usePhoneContext();
+  const { phones: fetchedPhones, isLoading, error } = useFetchPhones();
 
   useEffect(() => {
     if (!fetchedPhones) return;
 
-    dispatch({ type: "ADD_PHONES", phones: fetchedPhones });
+    setPhones(fetchedPhones);
   }, [fetchedPhones]);
-
-  const isLoading = !fetchedPhones && !(phones.length > 0);
 
   return (
     <div className={styles.container}>
@@ -34,8 +31,14 @@ export default function Home() {
 
         {isLoading && <MoonLoader />}
 
+        {!isLoading && error && (
+          <p className={styles.errorMessage}>
+            🚨 Ops, An error has occurred while loading phones
+          </p>
+        )}
+
         <div style={customStyles.grid}>
-          {!isLoading && <PhoneListContainer phones={phones} />}
+          {!isLoading && !error && <PhoneListContainer phones={phones} />}
         </div>
       </main>
 

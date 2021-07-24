@@ -29,7 +29,7 @@ async function client(
   });
 }
 
-export const serviceProvider = () => {
+export const apiClient = () => {
   const baseUrl = process.env.BASE_URL || DEFAULT_BASE_URL;
 
   return {
